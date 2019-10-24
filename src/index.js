@@ -1,4 +1,5 @@
-const exec = require('@actions/exec');
+const exec = require('./_exec');
+const path = require('path');
 const core = require('@actions/core');
 const semanticRelease = require('semantic-release');
 
@@ -10,12 +11,14 @@ const release = async () => {
     const plugins = core.getInput('plugins', {required: false}) || '';
 
     if (plugins) {
-        let pluginsToInstall = plugins.replace(/['"]/g, '').replace(/[\n\r]/g, ' ').split(" ");
-
-        const options = {
-            failOnStdErr: true,
-        };
-        await exec.exec('npm install', pluginsToInstall, options);
+        let pluginsToInstall = plugins.replace(/['"]/g, '').replace(/[\n\r]/g, ' ');
+        const {stdout, stderr} = await exec(`npm install ${pluginsToInstall}`, {
+            cwd: path.resolve(__dirname)
+        });
+        core.debug(stdout);
+        if (stderr) {
+            return Promise.reject(stderr);
+        }
     }
 
     const result = await semanticRelease();
