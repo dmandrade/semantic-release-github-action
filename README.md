@@ -8,6 +8,7 @@ This action use Semantic Release 16.0.0-beta.26
 
 - @semantic-release/git
 - @semantic-release/changelog
+- @semantic-release/exec
 
 ## Usage
 
