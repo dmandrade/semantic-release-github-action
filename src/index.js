@@ -29,13 +29,9 @@ const release = async () => {
         return;
     }
 
-    const {commits, nextRelease, releases} = result;
+    const {commits, nextRelease} = result;
 
     core.debug(`Published ${nextRelease.type} release version ${nextRelease.version} containing ${commits.length} commits.`);
-
-    for (const release of releases) {
-        core.debug(`The release was published with plugin "${release.pluginName}".`);
-    }
 
     // set outputs
     core.setOutput('published', 'true');
