@@ -3,10 +3,9 @@ const path = require('path');
 
 const run = async () => {
     {
-        const {stdout, stderr} = await exec('npm ci --only=prod', {
+        const {stderr} = await exec('npm ci --only=prod', {
             cwd: path.resolve(__dirname)
         });
-        console.log(stdout);
         if (stderr) {
             return Promise.reject(stderr);
         }
