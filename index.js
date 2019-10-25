@@ -3,7 +3,7 @@ const path = require('path');
 
 const run = async () => {
     {
-        const {stdout, stderr} = await exec('npm ci --only=prod', {
+        const {stdout, stderr} = await exec('npm ci', {
             cwd: path.resolve(__dirname)
         });
         console.log(stdout);
