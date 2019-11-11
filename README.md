@@ -1,4 +1,4 @@
-# WIP Semantic Release Github Action
+# Semantic Release Github Action
 
 GitHub Action for [Semantic Release](https://github.com/semantic-release/semantic-release). 
 
